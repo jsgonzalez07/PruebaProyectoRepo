@@ -32,7 +32,12 @@ public class Competidor extends Atleta {
                " | Peso: " + peso +
                " | Puntos: " + puntos;
     }   
- 
+    
+     // SOBRECARGA 1: actualizarRanking con un solo parámetro
+    public void actualizarRanking(int puntosObtenidos){
+        this.puntos += puntosObtenidos;
+        this.ranking = Math.max(1, this.ranking - puntosObtenidos);
+    }
     
     
     public int getRanking() { return ranking; }
