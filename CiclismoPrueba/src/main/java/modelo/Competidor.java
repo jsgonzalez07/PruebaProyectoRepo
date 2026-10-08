@@ -1,0 +1,75 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package modelo;
+
+/**
+ *
+ * @author juans
+ */
+public class Competidor extends Atleta {
+
+    private int ranking;
+    private double estatura;
+    private double peso;
+    private int puntos;
+
+    public Competidor(String nombre, int edad, String pais, int ranking, double estatura, double peso){
+        super(nombre, edad, pais);
+        this.ranking = ranking;
+        this.estatura = estatura;
+        this.peso = peso;
+        this.puntos = 0;
+    }
+
+    // SOBRESCRITURA (@Override) usando super.toString()
+    @Override
+    public String toString() {
+        return super.toString() +
+               " | Ranking: " + ranking +
+               " | Estatura: " + estatura +
+               " | Peso: " + peso +
+               " | Puntos: " + puntos;
+    }   
+    
+     // SOBRECARGA 1: actualizarRanking con un solo parámetro
+    public void actualizarRanking(int puntosObtenidos){
+        this.puntos += puntosObtenidos;
+        this.ranking = Math.max(1, this.ranking - puntosObtenidos);
+    }
+    
+    // SOBRECARGA 2: actualizarRanking con dos parámetros
+    public void actualizarRanking(int puntosObtenidos, boolean ganoMedalla){
+        this.puntos += puntosObtenidos;
+
+        // Estructura anidada
+        if (ganoMedalla) {
+            if (puntosObtenidos > 50){
+                // Bonificación alta: sube 5 posiciones
+                this.ranking = Math.max(1, this.ranking - 5);
+            } else if (puntosObtenidos > 20) {
+                // Bonificación media: sube 3 posiciones
+                this.ranking = Math.max(1, this.ranking - 3);
+            } else {
+                // Bonificación baja: sube 1 posición
+                this.ranking = Math.max(1, this.ranking - 1);
+            }
+        } else {
+            // Sin medalla, solo se descuenta por puntos
+            this.ranking = Math.max(1, this.ranking - puntosObtenidos);
+        }
+    }
+    
+    
+    public int getRanking() { return ranking; }
+    public void setRanking(int ranking) { this.ranking = ranking; }
+
+    public double getEstatura() { return estatura; }
+    public void setEstatura(double estatura) { this.estatura = estatura; }
+
+    public double getPeso() { return peso; }
+    public void setPeso(double peso) { this.peso = peso; }
+
+    public int getPuntos() { return puntos; }    
+}
