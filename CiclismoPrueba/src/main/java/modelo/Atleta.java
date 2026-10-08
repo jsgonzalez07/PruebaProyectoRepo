@@ -23,5 +23,15 @@ public class Atleta {
     @Override
     public String toString() {
         return "Nombre: " + nombre + " | Edad: " + edad + " | País: " + pais;
-    }    
+    }
+
+    // Getters
+    public String getNombre() { return nombre; }
+    public int getEdad() { return edad; }
+    public String getPais() { return pais; }
+
+    // Setters
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setEdad(int edad) { this.edad = edad; }
+    public void setPais(String pais) { this.pais = pais; }    
 }
