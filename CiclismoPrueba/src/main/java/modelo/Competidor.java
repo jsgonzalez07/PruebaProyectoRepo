@@ -39,6 +39,28 @@ public class Competidor extends Atleta {
         this.ranking = Math.max(1, this.ranking - puntosObtenidos);
     }
     
+    // SOBRECARGA 2: actualizarRanking con dos parámetros
+    public void actualizarRanking(int puntosObtenidos, boolean ganoMedalla){
+        this.puntos += puntosObtenidos;
+
+        // Estructura anidada
+        if (ganoMedalla) {
+            if (puntosObtenidos > 50){
+                // Bonificación alta: sube 5 posiciones
+                this.ranking = Math.max(1, this.ranking - 5);
+            } else if (puntosObtenidos > 20) {
+                // Bonificación media: sube 3 posiciones
+                this.ranking = Math.max(1, this.ranking - 3);
+            } else {
+                // Bonificación baja: sube 1 posición
+                this.ranking = Math.max(1, this.ranking - 1);
+            }
+        } else {
+            // Sin medalla, solo se descuenta por puntos
+            this.ranking = Math.max(1, this.ranking - puntosObtenidos);
+        }
+    }
+    
     
     public int getRanking() { return ranking; }
     public void setRanking(int ranking) { this.ranking = ranking; }
